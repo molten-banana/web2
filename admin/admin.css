@@ -1,3 +1,5 @@
+@import url("../assets/css/variables.css");
+
 :root {
 
   --sidebar-width: 280px;
@@ -21,7 +23,12 @@ body {
     Helvetica,
     sans-serif;
 
-  background: transparent;
+  background:
+  linear-gradient(
+    135deg,
+    #0f172a 0%,
+    #111827 100%
+  );
 
   color: var(--text-color);
 
@@ -94,7 +101,7 @@ body::after {
     1px solid rgba(255,255,255,0.08);
 
   background:
-    rgba(255,255,255,0.04);
+    rgba(15,23,42,0.78);
 
   backdrop-filter:
     blur(24px);
@@ -134,7 +141,7 @@ body::after {
   border: none;
 
   background:
-    rgba(255,255,255,0.04);
+    rgba(255,255,255,0.06);
 
   color: var(--text-color);
 
@@ -250,7 +257,7 @@ button {
 .section-editor {
 
   background:
-    rgba(255,255,255,0.05);
+    rgba(15,23,42,0.72);
 
   border:
     1px solid rgba(255,255,255,0.08);
@@ -260,6 +267,9 @@ button {
   padding: 24px;
 
   margin-bottom: 24px;
+
+  box-shadow:
+  0 0 30px rgba(59,130,246,0.10);
 
   backdrop-filter:
     blur(18px);
@@ -273,6 +283,19 @@ button {
 input,
 textarea {
 
+input:focus,
+textarea:focus {
+
+  outline: none;
+
+  border:
+    1px solid rgba(59,130,246,0.45);
+
+  box-shadow:
+    0 0 18px rgba(59,130,246,0.18);
+
+}
+
   width: 100%;
 
   margin-top: 10px;
@@ -281,12 +304,13 @@ textarea {
 
   padding: 14px;
 
-  border: none;
+  border:
+  1px solid rgba(255,255,255,0.08);
 
   border-radius: 14px;
 
   background:
-    rgba(255,255,255,0.08);
+    rgba(255,255,255,0.06);
 
   color: var(--text-color);
 
@@ -347,6 +371,9 @@ textarea {
 
   color: white;
 
+  box-shadow:
+  0 0 20px rgba(59,130,246,0.12);
+
   background:
     rgba(255,255,255,0.12);
 
@@ -368,6 +395,9 @@ textarea {
 
   background:
     #2563eb !important;
+
+    box-shadow:
+        0 0 28px rgba(59,130,246,0.28);
 
 }
 
@@ -404,6 +434,17 @@ textarea {
 
 }
 
+.admin-main,
+.sidebar,
+.content-item,
+.card-editor,
+.section-editor {
+
+  color:
+    rgba(255,255,255,0.92);
+
+}
+
 /* =========================
    MOBILE
 ========================= */
@@ -425,6 +466,9 @@ textarea {
     position: relative;
 
     border-right: none;
+
+    box-shadow:
+  10px 0 40px rgba(0,0,0,0.28);
 
     border-bottom:
       1px solid rgba(255,255,255,0.08);
