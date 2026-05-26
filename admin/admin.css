@@ -1,0 +1,187 @@
+body {
+
+  margin: 0;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background:
+    #0f172a;
+
+  color:
+    white;
+
+}
+
+.admin-layout {
+
+  display: flex;
+
+  min-height: 100vh;
+
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+
+  width: 240px;
+
+  background:
+    rgba(255,255,255,0.04);
+
+  border-right:
+    1px solid rgba(255,255,255,0.08);
+
+  padding: 30px 20px;
+
+  box-sizing: border-box;
+
+}
+
+.sidebar h1 {
+
+  margin-bottom: 40px;
+
+}
+
+.nav-item {
+
+  width: 100%;
+
+  padding: 14px;
+
+  margin-bottom: 12px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  background:
+    rgba(255,255,255,0.05);
+
+  color:
+    white;
+
+  text-align: left;
+
+}
+
+.nav-item.active {
+
+  background:
+    var(--accent-color);
+
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.admin-main {
+
+  flex: 1;
+
+  padding: 40px;
+
+  box-sizing: border-box;
+
+}
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 40px;
+
+}
+
+/* =========================
+   CONTENT ITEMS
+========================= */
+
+.content-item {
+
+  background:
+    rgba(255,255,255,0.04);
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  border-radius: 18px;
+
+  padding: 20px;
+
+  margin-bottom: 20px;
+
+}
+
+.content-item label {
+
+  display: block;
+
+  margin-bottom: 10px;
+
+  font-weight: 600;
+
+}
+
+.content-item textarea {
+
+  width: 100%;
+
+  min-height: 120px;
+
+  resize: vertical;
+
+  padding: 14px;
+
+  border-radius: 12px;
+
+  border: none;
+
+  box-sizing: border-box;
+
+  background:
+    rgba(255,255,255,0.08);
+
+  color:
+    white;
+
+}
+
+.save-button {
+
+  margin-top: 14px;
+
+  border: none;
+
+  padding: 12px 16px;
+
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  background:
+    var(--accent-color);
+
+  color:
+    white;
+
+  font-weight: 600;
+
+}

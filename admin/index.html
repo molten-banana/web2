@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Admin Dashboard</title>
+
+  <link
+    rel="stylesheet"
+    href="../assets/css/variables.css"
+  />
+
+  <link
+    rel="stylesheet"
+    href="admin.css"
+  />
+
+</head>
+
+<body>
+
+  <div class="admin-layout">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+      <h1>CMS</h1>
+
+      <nav>
+
+        <button class="nav-item active">
+          Content
+        </button>
+
+        <button class="nav-item">
+          Themes
+        </button>
+
+        <button class="nav-item">
+          Sections
+        </button>
+
+        <button class="nav-item">
+          Media
+        </button>
+
+      </nav>
+
+    </aside>
+
+    <!-- MAIN -->
+
+    <main class="admin-main">
+
+      <div class="topbar">
+
+        <h2>Site Content</h2>
+
+        <button id="logout-button">
+          Logout
+        </button>
+
+      </div>
+
+      <div id="content-list">
+
+        <!-- Loaded dynamically -->
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- SUPABASE -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script src="../assets/js/auth.js"></script>
+
+  <script src="admin.js"></script>
+
+</body>
+
+</html>
