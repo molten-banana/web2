@@ -209,6 +209,26 @@ const sectionsPanel =
     'sections-panel'
   );
 
+const mediaTab =
+  document.getElementById(
+    'media-tab'
+  );
+
+const mediaPanel =
+  document.getElementById(
+    'media-panel'
+  );
+
+const mediaGrid =
+  document.getElementById(
+    'media-grid'
+  );
+
+const mediaUpload =
+  document.getElementById(
+    'media-upload'
+  );
+
 /* =========================
    HIDE ALL PANELS
 ========================= */
@@ -223,6 +243,9 @@ function hideAllPanels() {
 
   sectionsPanel.style.display =
     'none';
+
+    mediaPanel.style.display =
+  ' none';
 
   navItems.forEach(item => {
 
@@ -290,6 +313,28 @@ sectionsTab.addEventListener(
     sectionsTab.classList.add(
       'active'
     );
+
+  }
+);
+
+/* =========================
+   MEDIA TAB
+========================= */
+
+mediaTab.addEventListener(
+  'click',
+  () => {
+
+    hideAllPanels();
+
+    mediaPanel.style.display =
+      'block';
+
+    mediaTab.classList.add(
+      'active'
+    );
+
+    loadMedia();
 
   }
 );
@@ -793,3 +838,168 @@ async function moveSection(
 ========================= */
 
 loadSectionsAdmin();
+
+/* =========================
+   MEDIA MANAGER
+========================= */
+
+async function loadMedia() {
+
+  mediaGrid.innerHTML = '';
+
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+    .storage
+    .from('media')
+    .list('', {
+      limit: 100
+    });
+
+  if (error) {
+
+    console.error(error);
+
+    return;
+
+  }
+
+  data.forEach(file => {
+
+    const {
+      data: publicUrlData
+    } =
+    supabaseClient
+      .storage
+      .from('media')
+      .getPublicUrl(file.name);
+
+    const imageUrl =
+      publicUrlData.publicUrl;
+
+    const item =
+      document.createElement('div');
+
+    item.className =
+      'media-item';
+
+    item.innerHTML = `
+
+      <img src="${imageUrl}" />
+
+      <div class="media-actions">
+
+        <button
+          onclick="copyMediaUrl('${imageUrl}')"
+        >
+          Copy URL
+        </button>
+
+        <button
+          onclick="deleteMedia('${file.name}')"
+        >
+          Delete
+        </button>
+
+      </div>
+
+    `;
+
+    mediaGrid.appendChild(item);
+
+  });
+
+}
+
+/* =========================
+   UPLOAD
+========================= */
+
+mediaUpload.addEventListener(
+  'change',
+  async event => {
+
+    const file =
+      event.target.files[0];
+
+    if (!file) return;
+
+    const fileName =
+      `${Date.now()}-${file.name}`;
+
+    const {
+      error
+    } =
+    await supabaseClient
+      .storage
+      .from('media')
+      .upload(
+        fileName,
+        file
+      );
+
+    if (error) {
+
+      console.error(error);
+
+      alert(
+        'Upload failed.'
+      );
+
+      return;
+
+    }
+
+    loadMedia();
+
+  }
+);
+
+/* =========================
+   COPY URL
+========================= */
+
+function copyMediaUrl(url) {
+
+  navigator.clipboard.writeText(
+    url
+  );
+
+  alert('URL copied.');
+
+}
+
+/* =========================
+   DELETE
+========================= */
+
+async function deleteMedia(fileName) {
+
+  const confirmed =
+    confirm(
+      'Delete this image?'
+    );
+
+  if (!confirmed) return;
+
+  const {
+    error
+  } =
+  await supabaseClient
+    .storage
+    .from('media')
+    .remove([fileName]);
+
+  if (error) {
+
+    console.error(error);
+
+    return;
+
+  }
+
+  loadMedia();
+
+}

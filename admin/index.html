@@ -57,9 +57,12 @@
           Sections
         </button>
 
-        <button class="nav-item">
-          Media
-        </button>
+        <button
+  class="nav-item"
+  id="media-tab"
+>
+  Media
+</button>
 
       </nav>
 
@@ -121,6 +124,32 @@
     </main>
 
   </div>
+
+<!-- MEDIA PANEL -->
+
+<div
+  id="media-panel"
+  style="display: none;"
+>
+
+  <div class="panel-header">
+
+    <h2>Media Manager</h2>
+
+    <input
+      type="file"
+      id="media-upload"
+      accept="image/*"
+    />
+
+  </div>
+
+  <div
+    id="media-grid"
+    class="media-grid"
+  ></div>
+
+</div>
 
   <!-- SUPABASE -->
 
