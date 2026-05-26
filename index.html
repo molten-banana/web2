@@ -67,7 +67,10 @@
 
     <div class="nav-container">
 
-      <div class="logo">
+      <div
+        class="logo editable"
+        data-key="logo-text"
+      >
         MyWebsite
       </div>
 
@@ -95,16 +98,39 @@
 
       </nav>
 
-      <!-- Theme Toggle -->
+<!-- NAVBAR ACTIONS -->
 
-      <button
-        id="theme-toggle"
-        class="theme-toggle"
-      >
-        🌙
-      </button>
+<div class="nav-actions">
 
-    </div>
+  <!-- Login Button -->
+
+  <button
+    id="login-button"
+    class="auth-button"
+  >
+    Login
+  </button>
+
+  <!-- Logout Button -->
+
+  <button
+    id="logout-button"
+    class="auth-button"
+    style="display: none;"
+  >
+    Logout
+  </button>
+
+  <!-- Theme Toggle -->
+
+  <button
+    id="theme-toggle"
+    class="theme-toggle"
+  >
+    🌙
+  </button>
+
+</div>
 
   </header>
 
@@ -119,11 +145,17 @@
       class="hero"
     >
 
-      <h1>
+      <h1
+        class="editable"
+        data-key="hero-title"
+      >
         Responsive Modern Webpage
       </h1>
 
-      <p>
+      <p
+        class="editable"
+        data-key="hero-description"
+      >
         A smooth responsive website
         with dark mode, scroll animations,
         floating navbar, glassmorphism,
@@ -141,9 +173,17 @@
 
       <div class="section-container">
 
-        <h2>About Us</h2>
+        <h2
+          class="editable"
+          data-key="about-title"
+        >
+          About Us
+        </h2>
 
-        <p>
+        <p
+          class="editable"
+          data-key="about-description"
+        >
           This is a placeholder About section.
           You can introduce your company,
           project, portfolio, or personal
@@ -163,15 +203,28 @@
 
       <div class="section-container">
 
-        <h2>Services</h2>
+        <h2
+          class="editable"
+          data-key="services-title"
+        >
+          Services
+        </h2>
 
         <div class="card-grid">
 
           <div class="card">
 
-            <h3>Web Design</h3>
+            <h3
+              class="editable"
+              data-key="service-card-title-1"
+            >
+              Web Design
+            </h3>
 
-            <p>
+            <p
+              class="editable"
+              data-key="service-card-text-1"
+            >
               Modern responsive website designs
               optimized for all devices.
             </p>
@@ -180,9 +233,17 @@
 
           <div class="card">
 
-            <h3>Development</h3>
+            <h3
+              class="editable"
+              data-key="service-card-title-2"
+            >
+              Development
+            </h3>
 
-            <p>
+            <p
+              class="editable"
+              data-key="service-card-text-2"
+            >
               Clean scalable frontend and backend
               development solutions.
             </p>
@@ -191,9 +252,17 @@
 
           <div class="card">
 
-            <h3>UI/UX</h3>
+            <h3
+              class="editable"
+              data-key="service-card-title-3"
+            >
+              UI/UX
+            </h3>
 
-            <p>
+            <p
+              class="editable"
+              data-key="service-card-text-3"
+            >
               Beautiful user experiences with
               accessibility and performance in mind.
             </p>
@@ -215,9 +284,17 @@
 
       <div class="section-container">
 
-        <h2>Contact</h2>
+        <h2
+          class="editable"
+          data-key="contact-title"
+        >
+          Contact
+        </h2>
 
-        <p>
+        <p
+          class="editable"
+          data-key="contact-description"
+        >
           Add your email address,
           social links, forms, or
           business contact information here.
@@ -233,7 +310,10 @@
 
   <footer class="footer">
 
-    <p>
+    <p
+      class="editable"
+      data-key="footer-text"
+    >
       © 2026 MyWebsite.
       All Rights Reserved.
     </p>
@@ -242,15 +322,15 @@
 
   <!-- JAVASCRIPT FILES -->
 
-  <script src="assets/js/theme.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <script src="assets/js/navbar.js"></script>
-
-  <script src="assets/js/background.js"></script>
-
-  <script src="assets/js/animations.js"></script>
-
-  <script src="assets/js/main.js"></script>
+<script src="assets/js/theme.js"></script>
+<script src="assets/js/navbar.js"></script>
+<script src="assets/js/background.js"></script>
+<script src="assets/js/animations.js"></script>
+<script src="assets/js/editor.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/main.js"></script>
 
 </body>
 </html>

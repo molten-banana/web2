@@ -75,3 +75,62 @@ window.addEventListener('scroll', () => {
   });
 
 });
+
+/* =========================
+   NAV ACTIONS
+========================= */
+
+.nav-actions {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+}
+
+/* =========================
+   AUTH BUTTONS
+========================= */
+
+.auth-button {
+
+  border: none;
+
+  padding: 10px 16px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-size: 0.95rem;
+
+  font-weight: 500;
+
+  background:
+    var(--card-color);
+
+  color:
+    var(--text-color);
+
+  backdrop-filter:
+    blur(10px);
+
+  border:
+    1px solid var(--border-color);
+
+  box-shadow:
+    var(--shadow);
+
+  transition:
+    all var(--transition-speed) ease;
+
+}
+
+.auth-button:hover {
+
+  transform:
+    scale(1.05);
+
+}
