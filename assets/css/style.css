@@ -4,24 +4,6 @@
 
 @media (max-width: 768px) {
 
-  .nav-container {
-
-    flex-direction: column;
-
-    gap: 15px;
-
-  }
-
-  .nav-links {
-
-    flex-wrap: wrap;
-
-    justify-content: center;
-
-    gap: 15px;
-
-  }
-
   .navbar {
 
     padding: 15px;
@@ -30,7 +12,7 @@
 
   .main-content {
 
-    padding-top: 220px;
+    padding-top: 140px;
 
   }
 
