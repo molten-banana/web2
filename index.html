@@ -30,8 +30,8 @@
   />
 
   <link
-  rel="stylesheet"
-  href="assets/css/admin.css"
+    rel="stylesheet"
+    href="assets/css/admin.css"
   />
 
   <link
@@ -47,29 +47,33 @@
 </head>
 
 <body>
-<div id="admin-toolbar">
 
-  <div class="admin-left">
+  <!-- ADMIN TOOLBAR -->
 
-    <span class="admin-badge">
-      Admin Mode
-    </span>
+  <div id="admin-toolbar">
+
+    <div class="admin-left">
+
+      <span class="admin-badge">
+        Admin Mode
+      </span>
+
+    </div>
+
+    <div class="admin-right">
+
+      <button id="edit-toggle">
+        ✏️ Enable Editing
+      </button>
+
+      <span id="save-status">
+        Ready
+      </span>
+
+    </div>
 
   </div>
 
-  <div class="admin-right">
-
-    <button id="edit-toggle">
-      ✏️ Enable Editing
-    </button>
-
-    <span id="save-status">
-      Ready
-    </span>
-
-  </div>
-
-</div>
   <!-- Animated Canvas Background -->
 
   <canvas
@@ -243,72 +247,12 @@
           Services
         </h2>
 
-        <div class="card-grid">
+        <!-- DYNAMIC CARDS -->
 
-          <!-- CARD 1 -->
-
-          <div class="card">
-
-            <h3
-              class="editable"
-              data-key="service-card-title-1"
-            >
-              Web Design
-            </h3>
-
-            <p
-              class="editable"
-              data-key="service-card-text-1"
-            >
-              Modern responsive website designs
-              optimized for all devices.
-            </p>
-
-          </div>
-
-          <!-- CARD 2 -->
-
-          <div class="card">
-
-            <h3
-              class="editable"
-              data-key="service-card-title-2"
-            >
-              Development
-            </h3>
-
-            <p
-              class="editable"
-              data-key="service-card-text-2"
-            >
-              Clean scalable frontend and backend
-              development solutions.
-            </p>
-
-          </div>
-
-          <!-- CARD 3 -->
-
-          <div class="card">
-
-            <h3
-              class="editable"
-              data-key="service-card-title-3"
-            >
-              UI/UX
-            </h3>
-
-            <p
-              class="editable"
-              data-key="service-card-text-3"
-            >
-              Beautiful user experiences with
-              accessibility and performance in mind.
-            </p>
-
-          </div>
-
-        </div>
+        <div
+          class="card-grid"
+          id="cards-container"
+        ></div>
 
       </div>
 
@@ -363,21 +307,35 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
- <script src="assets/js/auth.js"></script>
+  <!-- AUTH -->
 
-<script src="assets/js/cms.js"></script>
+  <script src="assets/js/auth.js"></script>
 
-<script src="assets/js/editor.js"></script>
+  <!-- CMS -->
 
-<script src="assets/js/theme.js"></script>
+  <script src="assets/js/cms.js"></script>
 
-<script src="assets/js/navbar.js"></script>
+  <!-- ADMIN -->
 
-<script src="assets/js/background.js"></script>
+  <script src="assets/js/editor.js"></script>
 
-<script src="assets/js/animations.js"></script>
+  <!-- DYNAMIC CONTENT -->
 
-<script src="assets/js/main.js"></script>
+  <script src="assets/js/cards.js"></script>
+
+  <!-- UI -->
+
+  <script src="assets/js/theme.js"></script>
+
+  <script src="assets/js/navbar.js"></script>
+
+  <script src="assets/js/background.js"></script>
+
+  <script src="assets/js/animations.js"></script>
+
+  <!-- MAIN -->
+
+  <script src="assets/js/main.js"></script>
 
 </body>
 
