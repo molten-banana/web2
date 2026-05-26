@@ -39,45 +39,60 @@ const logoutButton =
     'logout-button'
   );
 
+const adminLink =
+  document.getElementById(
+    'admin-link'
+  );
+
 /* =========================
    LOGIN WITH GITHUB
 ========================= */
 
-loginButton.addEventListener(
-  'click',
-  async () => {
+if (loginButton) {
 
-    await supabaseClient.auth.signInWithOAuth({
+  loginButton.addEventListener(
+    'click',
+    async () => {
 
-      provider: 'github',
+      await supabaseClient.auth
+        .signInWithOAuth({
 
-      options: {
+          provider: 'github',
 
-        redirectTo:
-            window.location.origin +
-            '/web2/'
+          options: {
 
-      }
+            redirectTo:
+              window.location.origin +
+              '/web2/'
 
-    });
+          }
 
-  }
-);
+        });
+
+    }
+  );
+
+}
 
 /* =========================
    LOGOUT
 ========================= */
 
-logoutButton.addEventListener(
-  'click',
-  async () => {
+if (logoutButton) {
 
-    await supabaseClient.auth.signOut();
+  logoutButton.addEventListener(
+    'click',
+    async () => {
 
-    window.location.reload();
+      await supabaseClient.auth
+        .signOut();
 
-  }
-);
+      window.location.reload();
+
+    }
+  );
+
+}
 
 /* =========================
    CHECK USER SESSION
@@ -88,7 +103,8 @@ async function checkUser() {
   const {
     data: { user }
   } =
-  await supabaseClient.auth.getUser();
+  await supabaseClient.auth
+    .getUser();
 
   /* =========================
      NO USER
@@ -97,6 +113,27 @@ async function checkUser() {
   if (!user) {
 
     disableEditing();
+
+    if (loginButton) {
+
+      loginButton.style.display =
+        'inline-flex';
+
+    }
+
+    if (logoutButton) {
+
+      logoutButton.style.display =
+        'none';
+
+    }
+
+    if (adminLink) {
+
+      adminLink.style.display =
+        'none';
+
+    }
 
     return;
 
@@ -107,40 +144,66 @@ async function checkUser() {
   ========================= */
 
   const githubUsername =
-    user.user_metadata.user_name;
+    user.user_metadata?.user_name;
 
   if (
-  githubUsername ===
-  ADMIN_USERNAME
-) {
+    githubUsername ===
+    ADMIN_USERNAME
+  ) {
 
-  enableEditing();
+    enableEditing();
 
-  loginButton.style.display =
-    'none';
+    /* =========================
+       BUTTON STATES
+    ========================= */
 
-  logoutButton.style.display =
-    'block';
+    if (loginButton) {
 
-  /* =========================
-     CLEAN URL
-  ========================= */
+      loginButton.style.display =
+        'none';
 
-  window.history.replaceState(
-    {},
-    document.title,
-    window.location.pathname
-  );
+    }
 
-  console.log(
-    'Admin authenticated'
-  );
+    if (logoutButton) {
 
-}
+      logoutButton.style.display =
+        'inline-flex';
+
+    }
+
+    if (adminLink) {
+
+      adminLink.style.display =
+        'inline-flex';
+
+    }
+
+    /* =========================
+       CLEAN URL
+    ========================= */
+
+    window.history.replaceState(
+      {},
+      document.title,
+      window.location.pathname
+    );
+
+    console.log(
+      'Admin authenticated'
+    );
+
+  }
 
   else {
 
     disableEditing();
+
+    if (adminLink) {
+
+      adminLink.style.display =
+        'none';
+
+    }
 
     console.warn(
       'Unauthorized user'
