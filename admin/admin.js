@@ -176,9 +176,22 @@ loadContent();
    TAB SWITCHING
 ========================= */
 
+const navItems =
+  document.querySelectorAll(
+    '.nav-item'
+  );
+
+const contentTab =
+  navItems[0];
+
 const cardsTab =
   document.getElementById(
     'cards-tab'
+  );
+
+const sectionsTab =
+  document.getElementById(
+    'sections-tab'
   );
 
 const contentList =
@@ -191,15 +204,92 @@ const cardsPanel =
     'cards-panel'
   );
 
+const sectionsPanel =
+  document.getElementById(
+    'sections-panel'
+  );
+
+/* =========================
+   HIDE ALL PANELS
+========================= */
+
+function hideAllPanels() {
+
+  contentList.style.display =
+    'none';
+
+  cardsPanel.style.display =
+    'none';
+
+  sectionsPanel.style.display =
+    'none';
+
+  navItems.forEach(item => {
+
+    item.classList.remove(
+      'active'
+    );
+
+  });
+
+}
+
+/* =========================
+   CONTENT TAB
+========================= */
+
+contentTab.addEventListener(
+  'click',
+  () => {
+
+    hideAllPanels();
+
+    contentList.style.display =
+      'block';
+
+    contentTab.classList.add(
+      'active'
+    );
+
+  }
+);
+
+/* =========================
+   CARDS TAB
+========================= */
+
 cardsTab.addEventListener(
   'click',
   () => {
 
-    contentList.style.display =
-      'none';
+    hideAllPanels();
 
     cardsPanel.style.display =
       'block';
+
+    cardsTab.classList.add(
+      'active'
+    );
+
+  }
+);
+
+/* =========================
+   SECTIONS TAB
+========================= */
+
+sectionsTab.addEventListener(
+  'click',
+  () => {
+
+    hideAllPanels();
+
+    sectionsPanel.style.display =
+      'block';
+
+    sectionsTab.classList.add(
+      'active'
+    );
 
   }
 );
@@ -489,36 +579,6 @@ async function moveCard(
 ========================= */
 
 loadCardsAdmin();
-
-/* =========================
-   SECTIONS TAB
-========================= */
-
-const sectionsTab =
-  document.getElementById(
-    'sections-tab'
-  );
-
-const sectionsPanel =
-  document.getElementById(
-    'sections-panel'
-  );
-
-sectionsTab.addEventListener(
-  'click',
-  () => {
-
-    contentList.style.display =
-      'none';
-
-    cardsPanel.style.display =
-      'none';
-
-    sectionsPanel.style.display =
-      'block';
-
-  }
-);
 
 /* =========================
    LOAD SECTIONS
