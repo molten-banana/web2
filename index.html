@@ -1,3 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Responsive Modern Webpage</title>
+
+  <link
+    rel="stylesheet"
+    href="assets/css/style.css"
+  />
+
+</head>
+
+<body>
+
+  <!-- Animated Canvas Background -->
+
+  <canvas
+    id="canvas_back"
+    data-size="40"
+    data-opacity="2"
+    data-dust="300"
+  ></canvas>
+
+  <div id="cover"></div>
+
+  <canvas
+    id="canvas_front"
+    data-size="3"
+    data-opacity="20"
+    data-dust="600"
+  ></canvas>
+
+  <!-- Floating Navbar -->
+
+  <header class="navbar">
+
+    <div class="nav-container">
+
+      <div class="logo">
+        MyWebsite
+      </div>
+
+      <nav>
+
+        <ul class="nav-links">
+
+          <li>
+            <a href="#home">Home</a>
+          </li>
+
+          <li>
+            <a href="#about">About</a>
+          </li>
+
+          <li>
+            <a href="#services">Services</a>
+          </li>
+
+          <li>
+            <a href="#contact">Contact</a>
+          </li>
+
+        </ul>
+
+      </nav>
+
+      <!-- Dark / Light Toggle -->
+
+      <button
+        id="theme-toggle"
+        class="theme-toggle"
+      >
+        🌙
+      </button>
+
+    </div>
+
+  </header>
+
+  <!-- Main Content -->
+
+  <main class="main-content">
+
+    <!-- HERO -->
+
+    <section
+      id="home"
+      class="hero"
+    >
+
+      <h1>
+        Responsive Modern Webpage
+      </h1>
+
+      <p>
+        A smooth responsive website
+        with dark mode, scroll animations,
+        floating navbar, glassmorphism,
+        and animated particle backgrounds.
+      </p>
+
+    </section>
+
+    <!-- ABOUT -->
+
+    <section
+      id="about"
+      class="content-section"
+    >
+
+      <div class="section-container">
+
+        <h2>About Us</h2>
+
+        <p>
+          This is a placeholder About section.
+          You can introduce your company,
+          project, portfolio, or personal
+          brand here.
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- SERVICES -->
+
+    <section
+      id="services"
+      class="content-section"
+    >
+
+      <div class="section-container">
+
+        <h2>Services</h2>
+
+        <div class="card-grid">
+
+          <div class="card">
+
+            <h3>Web Design</h3>
+
+            <p>
+              Modern responsive website designs
+              optimized for all devices.
+            </p>
+
+          </div>
+
+          <div class="card">
+
+            <h3>Development</h3>
+
+            <p>
+              Clean scalable frontend and backend
+              development solutions.
+            </p>
+
+          </div>
+
+          <div class="card">
+
+            <h3>UI/UX</h3>
+
+            <p>
+              Beautiful user experiences with
+              accessibility and performance in mind.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- CONTACT -->
+
+    <section
+      id="contact"
+      class="content-section"
+    >
+
+      <div class="section-container">
+
+        <h2>Contact</h2>
+
+        <p>
+          Add your email address,
+          social links, forms, or
+          business contact information here.
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+
+  <footer class="footer">
+
+    <p>
+      © 2026 MyWebsite.
+      All Rights Reserved.
+    </p>
+
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+
+</body>
 </html>
