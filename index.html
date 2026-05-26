@@ -30,6 +30,11 @@
   />
 
   <link
+  rel="stylesheet"
+  href="assets/css/admin.css"
+  />
+
+  <link
     rel="stylesheet"
     href="assets/css/sections.css"
   />
@@ -42,7 +47,29 @@
 </head>
 
 <body>
+<div id="admin-toolbar">
 
+  <div class="admin-left">
+
+    <span class="admin-badge">
+      Admin Mode
+    </span>
+
+  </div>
+
+  <div class="admin-right">
+
+    <button id="edit-toggle">
+      ✏️ Enable Editing
+    </button>
+
+    <span id="save-status">
+      Ready
+    </span>
+
+  </div>
+
+</div>
   <!-- Animated Canvas Background -->
 
   <canvas

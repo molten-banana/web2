@@ -1,0 +1,112 @@
+/* =========================
+   ADMIN TOOLBAR
+========================= */
+
+#admin-toolbar {
+
+  position: fixed;
+
+  bottom: 20px;
+
+  right: 20px;
+
+  z-index: 9999;
+
+  display: none;
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 14px 18px;
+
+  border-radius: 18px;
+
+  background:
+    rgba(15, 23, 42, 0.75);
+
+  backdrop-filter:
+    blur(20px);
+
+  border:
+    1px solid rgba(255,255,255,0.12);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.3);
+
+}
+
+/* =========================
+   ADMIN BADGE
+========================= */
+
+.admin-badge {
+
+  font-size: 0.9rem;
+
+  font-weight: 600;
+
+  color: white;
+
+}
+
+/* =========================
+   ADMIN BUTTON
+========================= */
+
+#edit-toggle {
+
+  border: none;
+
+  padding: 10px 14px;
+
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  background:
+    var(--accent-color);
+
+  color: white;
+
+  font-weight: 600;
+
+  transition:
+    transform 0.2s ease;
+
+}
+
+#edit-toggle:hover {
+
+  transform:
+    translateY(-2px);
+
+}
+
+/* =========================
+   SAVE STATUS
+========================= */
+
+#save-status {
+
+  font-size: 0.85rem;
+
+  color:
+    rgba(255,255,255,0.8);
+
+}
+
+/* =========================
+   EDIT MODE OUTLINES
+========================= */
+
+.editing {
+
+  outline:
+    2px dashed var(--accent-color);
+
+  outline-offset: 4px;
+
+  border-radius: 6px;
+
+}

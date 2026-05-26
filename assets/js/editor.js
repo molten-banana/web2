@@ -1,5 +1,5 @@
 /* =========================
-   EDIT MODE
+   ADMIN MODE
 ========================= */
 
 let editMode = false;
@@ -7,40 +7,38 @@ let editMode = false;
 let isAdmin = false;
 
 /* =========================
-   SELECT EDITABLE ELEMENTS
+   ELEMENTS
 ========================= */
 
 const editableElements =
   document.querySelectorAll('.editable');
 
-/* =========================
-   CREATE EDIT BUTTON
-========================= */
+const adminToolbar =
+  document.getElementById(
+    'admin-toolbar'
+  );
 
-const editButton =
-  document.createElement('button');
+const editToggle =
+  document.getElementById(
+    'edit-toggle'
+  );
 
-editButton.innerText = '✏️ Edit';
-
-editButton.classList.add('edit-button');
-
-document.body.appendChild(editButton);
-
-/* Hide by default */
-
-editButton.style.display = 'none';
+const saveStatus =
+  document.getElementById(
+    'save-status'
+  );
 
 /* =========================
-   CHECK USER SESSION
+   CHECK ADMIN STATUS
 ========================= */
 
 async function checkAdminStatus() {
 
   const {
     data: { user }
-  } = await supabaseClient.auth.getUser();
-
-  /* Not logged in */
+  } = await supabaseClient
+    .auth
+    .getUser();
 
   if (!user) {
 
@@ -48,12 +46,8 @@ async function checkAdminStatus() {
 
   }
 
-  /* GitHub username */
-
   const githubUsername =
     user.user_metadata?.user_name;
-
-  /* ONLY ALLOW YOUR ACCOUNT */
 
   if (
     githubUsername ===
@@ -62,8 +56,8 @@ async function checkAdminStatus() {
 
     isAdmin = true;
 
-    editButton.style.display =
-      'block';
+    adminToolbar.style.display =
+      'flex';
 
   }
 
@@ -75,7 +69,7 @@ checkAdminStatus();
    TOGGLE EDIT MODE
 ========================= */
 
-editButton.addEventListener(
+editToggle.addEventListener(
   'click',
   () => {
 
@@ -93,29 +87,50 @@ editButton.addEventListener(
         element.contentEditable =
           editMode;
 
-        if (editMode) {
-
-          element.classList.add(
-            'editing'
-          );
-
-        }
-
-        else {
-
-          element.classList.remove(
-            'editing'
-          );
-
-        }
+        element.classList.toggle(
+          'editing',
+          editMode
+        );
 
       }
     );
 
-    editButton.innerText =
+    editToggle.innerText =
       editMode
-        ? '💾 Save Mode'
-        : '✏️ Edit';
+        ? '💾 Editing Enabled'
+        : '✏️ Enable Editing';
+
+  }
+);
+
+/* =========================
+   SAVE STATUS
+========================= */
+
+document.addEventListener(
+  'input',
+  () => {
+
+    if (!editMode) {
+
+      return;
+
+    }
+
+    saveStatus.innerText =
+      'Saving...';
+
+    clearTimeout(
+      window.saveTimer
+    );
+
+    window.saveTimer =
+      setTimeout(() => {
+
+        saveStatus.innerText =
+          'Saved ✓';
+
+      }, 600);
 
   }
 );
