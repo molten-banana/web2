@@ -40,8 +40,11 @@
           Content
         </button>
 
-        <button class="nav-item">
-          Themes
+        <button
+            class="nav-item"
+            id="cards-tab"
+        >
+            Cards
         </button>
 
         <button class="nav-item">
@@ -70,11 +73,28 @@
 
       </div>
 
-      <div id="content-list">
+      <div id="content-list"></div>
 
-        <!-- Loaded dynamically -->
+<!-- CARDS PANEL -->
 
-      </div>
+<div
+  id="cards-panel"
+  style="display: none;"
+>
+
+  <div class="panel-header">
+
+    <h2>Cards</h2>
+
+    <button id="add-card-button">
+      + Add Card
+    </button>
+
+  </div>
+
+  <div id="cards-list"></div>
+
+</div>
 
     </main>
 

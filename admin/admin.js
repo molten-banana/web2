@@ -171,3 +171,321 @@ document
 ========================= */
 
 loadContent();
+
+/* =========================
+   TAB SWITCHING
+========================= */
+
+const cardsTab =
+  document.getElementById(
+    'cards-tab'
+  );
+
+const contentList =
+  document.getElementById(
+    'content-list'
+  );
+
+const cardsPanel =
+  document.getElementById(
+    'cards-panel'
+  );
+
+cardsTab.addEventListener(
+  'click',
+  () => {
+
+    contentList.style.display =
+      'none';
+
+    cardsPanel.style.display =
+      'block';
+
+  }
+);
+
+/* =========================
+   LOAD CARDS
+========================= */
+
+async function loadCardsAdmin() {
+
+  const {
+    data,
+    error
+  } = await supabaseClient
+    .from('cards')
+    .select('*')
+    .order(
+      'sort_order',
+      {
+        ascending: true
+      }
+    );
+
+  if (error) {
+
+    console.error(error);
+
+    return;
+
+  }
+
+  const cardsList =
+    document.getElementById(
+      'cards-list'
+    );
+
+  cardsList.innerHTML = '';
+
+  data.forEach(card => {
+
+    const element =
+      document.createElement('div');
+
+    element.classList.add(
+      'card-editor'
+    );
+
+    element.innerHTML = `
+      <input
+        type="text"
+        id="title-${card.id}"
+        value="${card.title}"
+        placeholder="Title"
+      />
+
+      <textarea
+        id="description-${card.id}"
+        placeholder="Description"
+      >${card.description}</textarea>
+
+      <input
+        type="text"
+        id="icon-${card.id}"
+        value="${card.icon}"
+        placeholder="Icon"
+      />
+
+      <div class="card-actions">
+
+        <button
+          class="save-card"
+          onclick="saveCard(${card.id})"
+        >
+          Save
+        </button>
+
+        <button
+          class="delete-card"
+          onclick="deleteCard(${card.id})"
+        >
+          Delete
+        </button>
+
+        <button
+          class="move-card"
+          onclick="moveCard(${card.id}, -1)"
+        >
+          ↑
+        </button>
+
+        <button
+          class="move-card"
+          onclick="moveCard(${card.id}, 1)"
+        >
+          ↓
+        </button>
+
+      </div>
+    `;
+
+    cardsList.appendChild(
+      element
+    );
+
+  });
+
+}
+
+/* =========================
+   SAVE CARD
+========================= */
+
+async function saveCard(id) {
+
+  const title =
+    document.getElementById(
+      `title-${id}`
+    ).value;
+
+  const description =
+    document.getElementById(
+      `description-${id}`
+    ).value;
+
+  const icon =
+    document.getElementById(
+      `icon-${id}`
+    ).value;
+
+  const {
+    error
+  } = await supabaseClient
+    .from('cards')
+    .update({
+      title,
+      description,
+      icon
+    })
+    .eq('id', id);
+
+  if (error) {
+
+    console.error(error);
+
+    alert('Save failed');
+
+    return;
+
+  }
+
+  alert('Card saved');
+
+}
+
+/* =========================
+   DELETE CARD
+========================= */
+
+async function deleteCard(id) {
+
+  const confirmed =
+    confirm(
+      'Delete this card?'
+    );
+
+  if (!confirmed) {
+
+    return;
+
+  }
+
+  await supabaseClient
+    .from('cards')
+    .delete()
+    .eq('id', id);
+
+  loadCardsAdmin();
+
+}
+
+/* =========================
+   ADD CARD
+========================= */
+
+document
+  .getElementById(
+    'add-card-button'
+  )
+  .addEventListener(
+    'click',
+    async () => {
+
+      const {
+        data
+      } = await supabaseClient
+        .from('cards')
+        .select('sort_order')
+        .order(
+          'sort_order',
+          {
+            ascending: false
+          }
+        )
+        .limit(1);
+
+      const nextOrder =
+        data?.[0]?.sort_order + 1 || 1;
+
+      await supabaseClient
+        .from('cards')
+        .insert([
+          {
+            title: 'New Card',
+            description:
+              'Card description',
+            icon: '✨',
+            sort_order:
+              nextOrder
+          }
+        ]);
+
+      loadCardsAdmin();
+
+    }
+  );
+
+/* =========================
+   MOVE CARD
+========================= */
+
+async function moveCard(
+  id,
+  direction
+) {
+
+  const {
+    data
+  } = await supabaseClient
+    .from('cards')
+    .select('*')
+    .order(
+      'sort_order',
+      {
+        ascending: true
+      }
+    );
+
+  const index =
+    data.findIndex(
+      card => card.id === id
+    );
+
+  const target =
+    data[index + direction];
+
+  if (!target) {
+
+    return;
+
+  }
+
+  const current =
+    data[index];
+
+  await supabaseClient
+    .from('cards')
+    .update({
+      sort_order:
+        target.sort_order
+    })
+    .eq('id', current.id);
+
+  await supabaseClient
+    .from('cards')
+    .update({
+      sort_order:
+        current.sort_order
+    })
+    .eq('id', target.id);
+
+  loadCardsAdmin();
+
+}
+
+/* =========================
+   INITIALIZE CARDS
+========================= */
+
+loadCardsAdmin();
