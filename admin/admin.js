@@ -194,9 +194,9 @@ const sectionsTab =
     'sections-tab'
   );
 
-const contentList =
+const contentPanel =
   document.getElementById(
-    'content-list'
+    'content-panel'
   );
 
 const cardsPanel =
