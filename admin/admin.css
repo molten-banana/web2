@@ -313,3 +313,76 @@ body {
     rgba(255,255,255,0.15);
 
 }
+
+/* =========================
+   SECTION EDITOR
+========================= */
+
+.section-editor {
+
+  background:
+    rgba(255,255,255,0.04);
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  border-radius: 18px;
+
+  padding: 20px;
+
+  margin-bottom: 20px;
+
+}
+
+.section-header {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 20px;
+
+  margin-bottom: 16px;
+
+}
+
+.section-title {
+
+  font-size: 1rem;
+
+  font-weight: 600;
+
+}
+
+.section-toggle {
+
+  transform: scale(1.2);
+
+}
+
+.section-actions {
+
+  display: flex;
+
+  gap: 12px;
+
+}
+
+.section-actions button {
+
+  border: none;
+
+  padding: 10px 14px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  background:
+    rgba(255,255,255,0.1);
+
+  color: white;
+
+}

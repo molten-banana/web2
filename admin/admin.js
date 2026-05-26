@@ -489,3 +489,247 @@ async function moveCard(
 ========================= */
 
 loadCardsAdmin();
+
+/* =========================
+   SECTIONS TAB
+========================= */
+
+const sectionsTab =
+  document.getElementById(
+    'sections-tab'
+  );
+
+const sectionsPanel =
+  document.getElementById(
+    'sections-panel'
+  );
+
+sectionsTab.addEventListener(
+  'click',
+  () => {
+
+    contentList.style.display =
+      'none';
+
+    cardsPanel.style.display =
+      'none';
+
+    sectionsPanel.style.display =
+      'block';
+
+  }
+);
+
+/* =========================
+   LOAD SECTIONS
+========================= */
+
+async function loadSectionsAdmin() {
+
+  const {
+    data,
+    error
+  } = await supabaseClient
+    .from('sections')
+    .select('*')
+    .order(
+      'sort_order',
+      {
+        ascending: true
+      }
+    );
+
+  if (error) {
+
+    console.error(error);
+
+    return;
+
+  }
+
+  const sectionsList =
+    document.getElementById(
+      'sections-list'
+    );
+
+  sectionsList.innerHTML = '';
+
+  data.forEach(section => {
+
+    const element =
+      document.createElement('div');
+
+    element.classList.add(
+      'section-editor'
+    );
+
+    element.innerHTML = `
+      <div class="section-header">
+
+        <div>
+
+          <div class="section-title">
+            ${section.key}
+          </div>
+
+          <input
+            type="text"
+            id="section-title-${section.id}"
+            value="${section.title}"
+          />
+
+        </div>
+
+        <label>
+
+          Enabled
+
+          <input
+            type="checkbox"
+            class="section-toggle"
+            id="section-enabled-${section.id}"
+            ${
+              section.enabled
+                ? 'checked'
+                : ''
+            }
+          />
+
+        </label>
+
+      </div>
+
+      <div class="section-actions">
+
+        <button
+          onclick="saveSection(${section.id})"
+        >
+          Save
+        </button>
+
+        <button
+          onclick="moveSection(${section.id}, -1)"
+        >
+          ↑
+        </button>
+
+        <button
+          onclick="moveSection(${section.id}, 1)"
+        >
+          ↓
+        </button>
+
+      </div>
+    `;
+
+    sectionsList.appendChild(
+      element
+    );
+
+  });
+
+}
+
+/* =========================
+   SAVE SECTION
+========================= */
+
+async function saveSection(id) {
+
+  const title =
+    document.getElementById(
+      `section-title-${id}`
+    ).value;
+
+  const enabled =
+    document.getElementById(
+      `section-enabled-${id}`
+    ).checked;
+
+  const {
+    error
+  } = await supabaseClient
+    .from('sections')
+    .update({
+      title,
+      enabled
+    })
+    .eq('id', id);
+
+  if (error) {
+
+    console.error(error);
+
+    alert('Save failed');
+
+    return;
+
+  }
+
+  alert('Section saved');
+
+}
+
+/* =========================
+   MOVE SECTION
+========================= */
+
+async function moveSection(
+  id,
+  direction
+) {
+
+  const {
+    data
+  } = await supabaseClient
+    .from('sections')
+    .select('*')
+    .order(
+      'sort_order',
+      {
+        ascending: true
+      }
+    );
+
+  const index =
+    data.findIndex(
+      section => section.id === id
+    );
+
+  const target =
+    data[index + direction];
+
+  if (!target) {
+
+    return;
+
+  }
+
+  const current =
+    data[index];
+
+  await supabaseClient
+    .from('sections')
+    .update({
+      sort_order:
+        target.sort_order
+    })
+    .eq('id', current.id);
+
+  await supabaseClient
+    .from('sections')
+    .update({
+      sort_order:
+        current.sort_order
+    })
+    .eq('id', target.id);
+
+  loadSectionsAdmin();
+
+}
+
+/* =========================
+   INITIALIZE SECTIONS
+========================= */
+
+loadSectionsAdmin();
