@@ -10,6 +10,11 @@
     content="width=device-width, initial-scale=1.0"
   />
 
+  <meta
+    name="theme-color"
+    content="#0f172a"
+  />
+
   <title>Admin Dashboard</title>
 
   <link
@@ -24,7 +29,9 @@
 
 </head>
 
-<body>
+<body class="dark-theme">
+
+  <!-- AMBIENT LIGHTS -->
 
   <div class="admin-light admin-light-1"></div>
   <div class="admin-light admin-light-2"></div>
@@ -35,34 +42,52 @@
 
     <aside class="sidebar">
 
-      <h1>CMS</h1>
+      <div class="sidebar-brand">
+
+        <h1>CMS</h1>
+
+        <span>
+          Control Center
+        </span>
+
+      </div>
 
       <nav>
 
-        <button class="nav-item active">
+        <button
+          class="nav-item active"
+          id="content-tab"
+        >
           Content
         </button>
 
         <button
-            class="nav-item"
-            id="cards-tab"
+          class="nav-item"
+          id="cards-tab"
         >
-            Cards
+          Cards
         </button>
 
         <button
-            class="nav-item"
-            id="sections-tab"
+          class="nav-item"
+          id="sections-tab"
         >
           Sections
         </button>
 
         <button
-  class="nav-item"
-  id="media-tab"
->
-  Media
-</button>
+          class="nav-item"
+          id="media-tab"
+        >
+          Media
+        </button>
+
+        <a
+          href="../index.html"
+          class="nav-item home-link"
+        >
+          ← Back To Site
+        </a>
 
       </nav>
 
@@ -70,7 +95,7 @@
 
     <!-- MAIN -->
 
-    <main class="admin-main">
+    <main class="admin-main fade-in">
 
       <div class="topbar">
 
@@ -82,80 +107,83 @@
 
       </div>
 
+      <!-- CONTENT PANEL -->
+
       <div
-  id="content-panel"
->
+        id="content-panel"
+      >
 
-  <div id="content-list"></div>
+        <div id="content-list"></div>
 
-</div>
+      </div>
 
-<!-- SECTIONS PANEL -->
+      <!-- CARDS PANEL -->
 
-<div
-  id="sections-panel"
-  style="display: none;"
->
+      <div
+        id="cards-panel"
+        style="display: none;"
+      >
 
-  <div class="panel-header">
+        <div class="panel-header">
 
-    <h2>Sections</h2>
+          <h2>Cards</h2>
 
-  </div>
+          <button id="add-card-button">
+            + Add Card
+          </button>
 
-  <div id="sections-list"></div>
+        </div>
 
-</div>
+        <div id="cards-list"></div>
 
-<!-- CARDS PANEL -->
-<div
-  id="cards-panel"
-  style="display: none;"
->
+      </div>
 
-  <div class="panel-header">
+      <!-- SECTIONS PANEL -->
 
-    <h2>Cards</h2>
+      <div
+        id="sections-panel"
+        style="display: none;"
+      >
 
-    <button id="add-card-button">
-      + Add Card
-    </button>
+        <div class="panel-header">
 
-  </div>
+          <h2>Sections</h2>
 
-  <div id="cards-list"></div>
+        </div>
 
-</div>
+        <div id="sections-list"></div>
+
+      </div>
+
+      <!-- MEDIA PANEL -->
+
+      <div
+        id="media-panel"
+        style="display: none;"
+      >
+
+        <div class="panel-header">
+
+          <h2>Media Manager</h2>
+
+          <input
+            type="file"
+            id="media-upload"
+            accept="image/*"
+          />
+
+        </div>
+
+        <div
+          id="media-grid"
+          class="media-grid"
+        ></div>
+
+      </div>
 
     </main>
 
   </div>
-
-<!-- MEDIA PANEL -->
-
-<div
-  id="media-panel"
-  style="display: none;"
->
-
-  <div class="panel-header">
-
-    <h2>Media Manager</h2>
-
-    <input
-      type="file"
-      id="media-upload"
-      accept="image/*"
-    />
-
-  </div>
-
-  <div
-    id="media-grid"
-    class="media-grid"
-  ></div>
-
-</div>
 
   <!-- SUPABASE -->
 
