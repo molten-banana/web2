@@ -76,3 +76,55 @@ window.addEventListener('scroll', () => {
 
 });
 
+/* =========================
+   MOBILE MENU
+========================= */
+
+const mobileMenuToggle =
+  document.getElementById(
+    'mobile-menu-toggle'
+  );
+
+const navMenu =
+  document.querySelector(
+    '.nav-links'
+  );
+
+if (
+  mobileMenuToggle &&
+  navMenu
+) {
+
+  mobileMenuToggle.addEventListener(
+    'click',
+    () => {
+
+      navMenu.classList.toggle(
+        'active'
+      );
+
+    }
+  );
+
+  /* CLOSE ON LINK CLICK */
+
+  document
+    .querySelectorAll(
+      '.nav-links a'
+    )
+    .forEach(link => {
+
+      link.addEventListener(
+        'click',
+        () => {
+
+          navMenu.classList.remove(
+            'active'
+          );
+
+        }
+      );
+
+    });
+
+}
