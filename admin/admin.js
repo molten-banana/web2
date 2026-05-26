@@ -182,7 +182,9 @@ const navItems =
   );
 
 const contentTab =
-  navItems[0];
+  document.getElementById(
+    'content-tab'
+  );
 
 const cardsTab =
   document.getElementById(
@@ -192,6 +194,11 @@ const cardsTab =
 const sectionsTab =
   document.getElementById(
     'sections-tab'
+  );
+
+const mediaTab =
+  document.getElementById(
+    'media-tab'
   );
 
 const contentPanel =
@@ -207,11 +214,6 @@ const cardsPanel =
 const sectionsPanel =
   document.getElementById(
     'sections-panel'
-  );
-
-const mediaTab =
-  document.getElementById(
-    'media-tab'
   );
 
 const mediaPanel =
@@ -235,7 +237,7 @@ const mediaUpload =
 
 function hideAllPanels() {
 
-  contentList.style.display =
+  contentPanel.style.display =
     'none';
 
   cardsPanel.style.display =
@@ -244,8 +246,8 @@ function hideAllPanels() {
   sectionsPanel.style.display =
     'none';
 
-    mediaPanel.style.display =
-  ' none';
+  mediaPanel.style.display =
+    'none';
 
   navItems.forEach(item => {
 
@@ -267,7 +269,7 @@ contentTab.addEventListener(
 
     hideAllPanels();
 
-    contentList.style.display =
+    contentPanel.style.display =
       'block';
 
     contentTab.classList.add(
@@ -619,10 +621,6 @@ async function moveCard(
 
 }
 
-/* =========================
-   INITIALIZE CARDS
-========================= */
-
 loadCardsAdmin();
 
 /* =========================
@@ -833,10 +831,6 @@ async function moveSection(
 
 }
 
-/* =========================
-   INITIALIZE SECTIONS
-========================= */
-
 loadSectionsAdmin();
 
 /* =========================
@@ -850,8 +844,7 @@ async function loadMedia() {
   const {
     data,
     error
-  } =
-  await supabaseClient
+  } = await supabaseClient
     .storage
     .from('media')
     .list('', {
