@@ -160,12 +160,18 @@
   border:
     1px solid var(--border-color);
 
+  position: relative;
+
+  overflow: hidden;
+
   box-shadow:
-    var(--shadow);
+    0 10px 30px rgba(0,0,0,0.18),
+    0 0 30px rgba(59,130,246,0.14);
 
   transition:
     transform 0.3s ease,
-    background 0.3s ease;
+    background 0.3s ease,
+    box-shadow 0.35s ease;
 
 }
 
@@ -173,6 +179,10 @@
 
   transform:
     translateY(-10px);
+
+  box-shadow:
+    0 14px 40px rgba(0,0,0,0.22),
+    0 0 45px rgba(59,130,246,0.24);
 
 }
 
