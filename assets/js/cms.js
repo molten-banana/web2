@@ -50,24 +50,36 @@ async function saveContent(
 ) {
 
   const {
+    data,
     error
   } = await supabaseClient
     .from('site_content')
     .upsert(
-  {
-    key,
-    content
-  },
-  {
-    onConflict: 'key'
-  }
-);
+      [
+        {
+          key: key,
+          content: content
+        }
+      ],
+      {
+        onConflict: 'key'
+      }
+    );
 
   if (error) {
 
     console.error(
       'CMS SAVE ERROR:',
       error
+    );
+
+  }
+
+  else {
+
+    console.log(
+      'CMS SAVED:',
+      key
     );
 
   }
