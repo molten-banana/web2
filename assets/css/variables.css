@@ -1,0 +1,73 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+
+}
+
+html {
+
+  scroll-behavior: smooth;
+
+}
+
+/* =========================
+   ROOT VARIABLES
+========================= */
+
+:root {
+
+  --bg-color: transparent;
+
+  --text-color: #ffffff;
+
+  --card-color:
+    rgba(255, 255, 255, 0.08);
+
+  --nav-color:
+    rgba(255, 255, 255, 0.08);
+
+  --footer-color:
+    rgba(255, 255, 255, 0.08);
+
+  --border-color:
+    rgba(255, 255, 255, 0.08);
+
+  --shadow:
+    0 8px 25px rgba(0, 0, 0, 0.25);
+
+  --primary-color: #ffffff;
+
+  --transition-speed: 0.4s;
+
+  --glass-blur: blur(18px);
+
+}
+
+/* =========================
+   DARK MODE VARIABLES
+========================= */
+
+body.dark-mode {
+
+  --text-color: #f8fafc;
+
+  --card-color:
+    rgba(15, 23, 42, 0.35);
+
+  --nav-color:
+    rgba(15, 23, 42, 0.35);
+
+  --footer-color:
+    rgba(15, 23, 42, 0.35);
+
+  --border-color:
+    rgba(255, 255, 255, 0.08);
+
+}
