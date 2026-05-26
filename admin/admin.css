@@ -24,17 +24,19 @@ body {
     sans-serif;
 
   background:
-  linear-gradient(
-    135deg,
-    #0f172a 0%,
-    #111827 100%
-  );
+    linear-gradient(
+      135deg,
+      #0f172a 0%,
+      #111827 100%
+    );
 
   color: var(--text-color);
 
   min-height: 100vh;
 
   overflow-x: hidden;
+
+  position: relative;
 
 }
 
@@ -51,13 +53,23 @@ body::before {
   inset: 0;
 
   background:
-    linear-gradient(
-      135deg,
-      rgba(139,92,246,0.18),
-      rgba(59,130,246,0.12)
+    radial-gradient(
+      circle at top left,
+      rgba(179,83,219,0.32),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(239,148,86,0.24),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at center,
+      rgba(59,130,246,0.16),
+      transparent 45%
     );
 
-  z-index: -2;
+  z-index: -3;
 
 }
 
@@ -69,9 +81,63 @@ body::after {
 
   inset: 0;
 
-  backdrop-filter: blur(80px);
+  backdrop-filter:
+    blur(90px);
 
-  z-index: -1;
+  z-index: -2;
+
+}
+
+body::selection {
+
+  background:
+    rgba(59,130,246,0.35);
+
+}
+
+/* =========================
+   AMBIENT LIGHTS
+========================= */
+
+.admin-light {
+
+  position: fixed;
+
+  width: 420px;
+
+  height: 420px;
+
+  border-radius: 50%;
+
+  filter: blur(120px);
+
+  opacity: 0.18;
+
+  z-index: -4;
+
+  pointer-events: none;
+
+}
+
+.admin-light-1 {
+
+  top: -120px;
+
+  left: -120px;
+
+  background:
+    #B353DB;
+
+}
+
+.admin-light-2 {
+
+  bottom: -160px;
+
+  right: -120px;
+
+  background:
+    #EF9456;
 
 }
 
@@ -101,10 +167,13 @@ body::after {
     1px solid rgba(255,255,255,0.08);
 
   background:
-    rgba(15,23,42,0.78);
+    rgba(15,23,42,0.58);
 
   backdrop-filter:
-    blur(24px);
+    blur(26px);
+
+  box-shadow:
+    10px 0 40px rgba(0,0,0,0.28);
 
   position: sticky;
 
@@ -164,7 +233,10 @@ body::after {
     translateX(4px);
 
   background:
-    rgba(255,255,255,0.08);
+    rgba(255,255,255,0.10);
+
+  box-shadow:
+    0 0 24px rgba(59,130,246,0.16);
 
 }
 
@@ -174,6 +246,9 @@ body::after {
     var(--accent-color);
 
   color: white;
+
+  box-shadow:
+    0 0 28px rgba(59,130,246,0.22);
 
 }
 
@@ -236,6 +311,9 @@ button {
 
   cursor: pointer;
 
+  box-shadow:
+    0 0 18px rgba(59,130,246,0.12);
+
   transition:
     all 0.25s ease;
 
@@ -245,6 +323,12 @@ button {
 
   background:
     rgba(255,255,255,0.14);
+
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 0 28px rgba(59,130,246,0.28);
 
 }
 
@@ -257,7 +341,7 @@ button {
 .section-editor {
 
   background:
-    rgba(15,23,42,0.72);
+    rgba(15,23,42,0.52);
 
   border:
     1px solid rgba(255,255,255,0.08);
@@ -269,10 +353,25 @@ button {
   margin-bottom: 24px;
 
   box-shadow:
-  0 0 30px rgba(59,130,246,0.10);
+    0 0 30px rgba(59,130,246,0.10);
 
   backdrop-filter:
     blur(18px);
+
+  transition:
+    all 0.3s ease;
+
+}
+
+.content-item:hover,
+.card-editor:hover,
+.section-editor:hover {
+
+  transform:
+    translateY(-4px);
+
+  box-shadow:
+    0 0 45px rgba(59,130,246,0.16);
 
 }
 
@@ -282,6 +381,31 @@ button {
 
 input,
 textarea {
+
+  width: 100%;
+
+  margin-top: 10px;
+
+  margin-bottom: 18px;
+
+  padding: 14px;
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  border-radius: 14px;
+
+  background:
+    rgba(255,255,255,0.06);
+
+  color: var(--text-color);
+
+  font-size: 0.95rem;
+
+  transition:
+    all 0.25s ease;
+
+}
 
 input:focus,
 textarea:focus {
@@ -293,28 +417,6 @@ textarea:focus {
 
   box-shadow:
     0 0 18px rgba(59,130,246,0.18);
-
-}
-
-  width: 100%;
-
-  margin-top: 10px;
-
-  margin-bottom: 18px;
-
-  padding: 14px;
-
-  border:
-  1px solid rgba(255,255,255,0.08);
-
-  border-radius: 14px;
-
-  background:
-    rgba(255,255,255,0.06);
-
-  color: var(--text-color);
-
-  font-size: 0.95rem;
 
 }
 
@@ -371,11 +473,11 @@ textarea {
 
   color: white;
 
-  box-shadow:
-  0 0 20px rgba(59,130,246,0.12);
-
   background:
     rgba(255,255,255,0.12);
+
+  box-shadow:
+    0 0 20px rgba(59,130,246,0.12);
 
   transition:
     all 0.25s ease;
@@ -389,15 +491,15 @@ textarea {
   transform:
     translateY(-2px);
 
+  box-shadow:
+    0 0 28px rgba(59,130,246,0.28);
+
 }
 
 .save-card {
 
   background:
     #2563eb !important;
-
-    box-shadow:
-        0 0 28px rgba(59,130,246,0.28);
 
 }
 
@@ -466,9 +568,6 @@ textarea {
     position: relative;
 
     border-right: none;
-
-    box-shadow:
-  10px 0 40px rgba(0,0,0,0.28);
 
     border-bottom:
       1px solid rgba(255,255,255,0.08);
