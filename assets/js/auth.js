@@ -54,7 +54,8 @@ loginButton.addEventListener(
       options: {
 
         redirectTo:
-          window.location.origin
+            window.location.origin +
+            '/web2/'
 
       }
 
@@ -109,23 +110,33 @@ async function checkUser() {
     user.user_metadata.user_name;
 
   if (
-    githubUsername ===
-    ADMIN_USERNAME
-  ) {
+  githubUsername ===
+  ADMIN_USERNAME
+) {
 
-    enableEditing();
+  enableEditing();
 
-    loginButton.style.display =
-      'none';
+  loginButton.style.display =
+    'none';
 
-    logoutButton.style.display =
-      'block';
+  logoutButton.style.display =
+    'block';
 
-    console.log(
-      'Admin authenticated'
-    );
+  /* =========================
+     CLEAN URL
+  ========================= */
 
-  }
+  window.history.replaceState(
+    {},
+    document.title,
+    window.location.pathname
+  );
+
+  console.log(
+    'Admin authenticated'
+  );
+
+}
 
   else {
 
