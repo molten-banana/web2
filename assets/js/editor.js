@@ -4,33 +4,14 @@
 
 let editMode = false;
 
+let isAdmin = false;
+
 /* =========================
    SELECT EDITABLE ELEMENTS
 ========================= */
 
 const editableElements =
   document.querySelectorAll('.editable');
-
-/* =========================
-   LOAD SAVED CONTENT
-========================= */
-
-editableElements.forEach(element => {
-
-  const key =
-    element.dataset.key;
-
-  const savedContent =
-    localStorage.getItem(key);
-
-  if (savedContent) {
-
-    element.innerHTML =
-      savedContent;
-
-  }
-
-});
 
 /* =========================
    CREATE EDIT BUTTON
@@ -45,58 +26,96 @@ editButton.classList.add('edit-button');
 
 document.body.appendChild(editButton);
 
+/* Hide by default */
+
 editButton.style.display = 'none';
+
+/* =========================
+   CHECK USER SESSION
+========================= */
+
+async function checkAdminStatus() {
+
+  const {
+    data: { user }
+  } = await supabaseClient.auth.getUser();
+
+  /* Not logged in */
+
+  if (!user) {
+
+    return;
+
+  }
+
+  /* GitHub username */
+
+  const githubUsername =
+    user.user_metadata?.user_name;
+
+  /* ONLY ALLOW YOUR ACCOUNT */
+
+  if (
+    githubUsername ===
+    'molten-banana'
+  ) {
+
+    isAdmin = true;
+
+    editButton.style.display =
+      'block';
+
+  }
+
+}
+
+checkAdminStatus();
 
 /* =========================
    TOGGLE EDIT MODE
 ========================= */
 
-editButton.addEventListener('click', () => {
+editButton.addEventListener(
+  'click',
+  () => {
 
-  editMode = !editMode;
+    if (!isAdmin) {
 
-  editableElements.forEach(element => {
-
-    element.contentEditable =
-      editMode;
-
-    if (editMode) {
-
-      element.classList.add('editing');
+      return;
 
     }
 
-    else {
+    editMode = !editMode;
 
-      element.classList.remove('editing');
+    editableElements.forEach(
+      element => {
 
-    }
+        element.contentEditable =
+          editMode;
 
-  });
+        if (editMode) {
 
-  editButton.innerText =
-    editMode
-      ? '💾 Save Mode'
-      : '✏️ Edit';
+          element.classList.add(
+            'editing'
+          );
 
-});
+        }
 
-/* =========================
-   SAVE CONTENT
-========================= */
+        else {
 
-editableElements.forEach(element => {
+          element.classList.remove(
+            'editing'
+          );
 
-  element.addEventListener('input', () => {
+        }
 
-    const key =
-      element.dataset.key;
-
-    localStorage.setItem(
-      key,
-      element.innerHTML
+      }
     );
 
-  });
+    editButton.innerText =
+      editMode
+        ? '💾 Save Mode'
+        : '✏️ Edit';
 
-});
+  }
+);
