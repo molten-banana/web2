@@ -53,10 +53,15 @@ async function saveContent(
     error
   } = await supabaseClient
     .from('site_content')
-    .upsert({
-      key,
-      content
-    });
+    .upsert(
+  {
+    key,
+    content
+  },
+  {
+    onConflict: 'key'
+  }
+);
 
   if (error) {
 
